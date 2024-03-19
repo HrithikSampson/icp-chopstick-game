@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "icp_chopstick_backend": {
+      "candid": "src/icp_chopstick_backend/icp_chopstick_backend.did",
+      "package": "icp_chopstick_backend",
+      "type": "rust"
+    },
+    "icp_chopstick_frontend": {
+      "dependencies": [
+        "icp_chopstick_backend"
+      ],
+      "source": [
+        "src/icp_chopstick_frontend/assets"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
