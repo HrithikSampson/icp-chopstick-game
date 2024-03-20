@@ -1,3 +1,24 @@
-service : {
-    "greet": (text) -> (text) query;
+type Game = record {
+  session_id : text;
+  state : GameState;
+  player1 : Player;
+  player2 : opt Player;
+  current_turn : Turn;
+};
+type GameState = variant { Finished : principal; WaitingForPlayer; InProgress };
+type Player = record {
+  id : principal;
+  right_hand : nat8;
+  left_hand : nat8;
+};
+type Result = variant { Ok : Game; Err : text };
+type Result_1 = variant { Ok; Err : text };
+type Result_2 = variant { Ok : text; Err : text };
+type Turn = variant { Player1; Player2 };
+service : () -> {
+  get_game_state : (text) -> (Result) query;
+  join_game : (text) -> (Result_1);
+  make_move_opponent : (text, nat8, nat8) -> (Result_1);
+  make_move_other_hand : (text, nat8, nat8) -> (Result_1);
+  start_game : () -> (Result_2);
 }
